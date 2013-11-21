@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1385041194 source:c:\users\gibbon\documents\workspace\cholesky\nrutil.c
+	<stdio.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+
+1385042536 source:c:\users\gibbon\documents\workspace\cholesky\main.c
+	<stdlib.h>
+	<math.h>
+	<stdio.h>
+	"nrutil.h"
+
+1385041216 c:\users\gibbon\documents\workspace\cholesky\nrutil.h
+
