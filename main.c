@@ -4,7 +4,7 @@
 #include "nrutil.h"
 
 /*
-Skopiowane z ksiazki Numerica Recepies
+Skopiowane z ksiazki Numerical Recipes
 */
 //void choldc(float **a, int n, float p[])
 //{
@@ -117,6 +117,40 @@ int main(void)
     printf("\n\n%f\t0\t\t0\n", l[1][1], l[1][2], l[1][3]);
     printf("%f\t%f\t0\n", l[2][1], l[2][2], l[2][3]);
     printf("%f\t%f\t%f\n", l[3][1], l[3][2], l[3][3]);
+
+    //przyklad macierzy 100x100 wygenerowanej w matlabie
+    FILE * pFile;
+    pFile = fopen ("SPDmatrix100","r");
+
+    float f;
+    n = 100;
+    l = matrix(1, 100, 1, 100);
+    a = matrix(1, 100, 1, 100);
+    int i, j;
+    for (i = 1; i <= 100; i++)
+    {
+        for (j = 1; j <= 100; j++)
+        {
+            fscanf(pFile, "%f", &f);
+            a[i][j] = f;
+        }
+    }
+
+    choldc(a, l, n);
+    for (i = 1; i <= 100; i++)
+    {
+        for (j = 1; j <= 100; j++)
+            printf("%f ", l[i][j]);
+        printf("\n");
+    }
+    printf("\n");
+    choldc2(a, l, n);
+    for (i = 1; i <= 100; i++)
+    {
+        for (j = 1; j <= 100; j++)
+            printf("%f ", l[i][j]);
+        printf("\n");
+    }
 
 return 0;
 }
