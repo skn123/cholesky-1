@@ -41,10 +41,11 @@
 	<stdlib.h>
 	<stdio.h>
 
-1385243590 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\main.c
+1385251139 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\main.c
 	<stdlib.h>
 	<math.h>
 	<stdio.h>
+	<time.h>
 	"nrutil.h"
 
 1385041216 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\nrutil.h
