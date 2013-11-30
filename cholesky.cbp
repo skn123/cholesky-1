@@ -11,6 +11,7 @@
 				<Option object_output="build_debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="1000" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -31,6 +32,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="cholesky.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cholesky.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -38,6 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="nrutil.h" />
+		<Unit filename="spd_matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="spd_matrix.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

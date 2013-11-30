@@ -41,12 +41,13 @@
 	<stdlib.h>
 	<stdio.h>
 
-1385303938 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\main.c
+1385843705 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\main.c
 	<stdlib.h>
 	<math.h>
 	<stdio.h>
-	<time.h>
 	"nrutil.h"
+	"spd_matrix.h"
+	"cholesky.h"
 
 1385041216 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\nrutil.h
 
@@ -55,4 +56,21 @@
 	<stddef.h>
 	<stdlib.h>
 	<stdio.h>
+
+1385842825 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\spd_matrix.h
+
+1385838735 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\cholesky.c
+	"cholesky.h"
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"nrutil.h"
+
+1385831082 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\cholesky.h
+
+1385842883 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\spd_matrix.c
+	"spd_matrix.h"
+	"nrutil.h"
+	<math.h>
+	<stdlib.h>
 
