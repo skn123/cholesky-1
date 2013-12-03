@@ -12,5 +12,6 @@ double** matrix_positive_definite(double** A, int dimension);
 double** create_lower_triangular(double **A, int dimension);
 double** multiply(double **L, double **L_t, double **A, int dimension);
 double frobenius_norm(double** L, int dimension);
+//int convert_to_sse(__m128d *data, double **A, int dimension);
 
 #endif // SPD_MATRIX

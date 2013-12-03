@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <emmintrin.h>
 #include "nrutil.h"
 
 /*
@@ -35,9 +36,8 @@ return L;
 /*
 Wersja druga ze slajdów
 */
-double** choldc2(double**A, double**L, int dimension)
+double** choldc2(double **A, double **L, int dimension)
 {
-    void nrerror(char error_text[]);
     int i,j,k;
     clock_t begin, end;
     double time_spent;
@@ -59,3 +59,35 @@ double** choldc2(double**A, double**L, int dimension)
 return L;
 }
 
+void choldc_sse(__m128d *data, __m128d *L, int dimension)
+{
+    int i,j,k, count = 0;
+    clock_t begin, end;
+    double time_spent;
+    __m128d temp1, temp2;
+    __m128d *L_sse = (__m128d*) L;
+    __m128d *data_sse = data;
+
+
+    begin = clock();
+    for (k = 1; k <= dimension - 1; k += 2)
+    {
+        temp1 = _mm_sqrt_pd(*data_sse);
+        memcpy(L_sse, &temp1, 128);
+        data_sse++;
+        L_sse++;
+        for (i = k + 1; i <= dimension; i++)
+        {
+            temp2 = _mm_div_pd(*data_sse, temp1);
+            memcpy(L_sse, &temp2, 128);
+            data_sse++;
+            L_sse++;
+        }
+    }
+    end = clock();
+    printf("Time method SSE: %f\n", (double)(end - begin) / CLOCKS_PER_SEC);
+
+    double *kij = (double*) L;
+    for (i = 0; i < 12; i += 2)
+        printf("% 20.16lf\t\t% 20.16lf\n", kij[i], kij[i + 1]);
+}

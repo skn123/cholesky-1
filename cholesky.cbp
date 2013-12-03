@@ -11,7 +11,7 @@
 				<Option object_output="build_debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="1000" />
+				<Option parameters="4" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -31,6 +31,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-march=native" />
 		</Compiler>
 		<Unit filename="cholesky.c">
 			<Option compilerVar="CC" />
