@@ -108,7 +108,10 @@ double **dmatrix(long nrl, long nrh, long ncl, long nch)
 	m[nrl] -= ncl;
 
 	for(i=nrl+1;i<=nrh;i++) m[i]=m[i-1]+ncol;
-
+    int j;
+    for (i = 1; i <= nrh; i++)
+        for (j = 1; j <= nch; j++)
+            m[i][j] = 0.0;
 	/* return pointer to array of pointers to rows */
 	return m;
 }
