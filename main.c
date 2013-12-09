@@ -2,7 +2,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <malloc.h>
-#include <emmintrin.h>
 #include "nrutil.h"
 #include "spd_matrix.h"
 #include "cholesky.h"
@@ -12,6 +11,11 @@ int main(int argc, char* argv[])
 {
     srand( time( NULL ) );
 	int i,j;
+	if (!argv[1])
+	{
+	    printf("Specify matrix dimension.\n");
+	    exit(-1);
+	}
 	int dimension = atoi(argv[1]);
     printf("Dimension: %d\n", dimension);
     double norm1, norm2, norm3;
@@ -28,7 +32,7 @@ int main(int argc, char* argv[])
 //    print_matrix(A, dimension);
 
     //Faktoryzacja Choleskyego metoda 1.
-    L = choldc_openMP(A, L, dimension);
+    L = choldc(A, L, dimension);
     L_t = clone_matrix(L, dimension);
     L_t = transpose_matrix(L_t, dimension);
 
@@ -37,7 +41,7 @@ int main(int argc, char* argv[])
     norm2 = frobenius_norm(A_clone, dimension);
 
     //Faktoryzacja Choleskyego metoda 2.
-    L = choldc2_openMP(A, L, dimension);
+    L = choldc2(A, L, dimension);
     L_t = clone_matrix(L, dimension);
     L_t = transpose_matrix(L_t, dimension);
 

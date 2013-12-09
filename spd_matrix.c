@@ -2,7 +2,6 @@
 #include "nrutil.h"
 #include <math.h>
 #include <stdlib.h>
-#include <emmintrin.h>
 
 double random_double(double fMin, double fMax)
 {
@@ -165,56 +164,6 @@ double frobenius_norm(double** L, int dimension)
     }
 
 return sqrt(norm);
-}
-
-
-int convert_to_sse(__m128d *data, double **A, int dimension)
-{
-    int i, j, count = 0;
-    double *temp;
-    temp = malloc(128);
-
-//    data = _mm_malloc(128, 16);
-//    __m128d kij1;
-//    data = memcpy(data, &temp[1], 128);
-//    kij1 = _mm_add_pd(*data, *data);
-//    temp = memcpy(temp, &kij1, 128);
-//
-//    printf("a[0]: % 20.16lf\na[1]: % 20.16lf", temp[0], temp[1]);
-
-
-    //ladujemy tam elementy macierzy A w odpowiedniej kolejnosci
-    //lykamy po dwie kolumny
-    for (i = 1; i <= dimension; i += 2)
-    {
-        temp[0] = A[i][i];
-        temp[1] = A[i + 1][i + 1];
-        //kopiujemy dwa double
-        memcpy(data + count, temp, 128);
-        count++;
-        for (j = i + 1; j <= dimension; j++)
-        {
-            //bierzemy po dwie kolumny ale pomiewaz
-            //mamy macierz trojkatna to druga kolumna ma zawsze
-            //jeden element mniej, stad 0 jako padding
-            if (j == dimension)
-            {
-                temp[0] = A[j][i];
-                temp[1] = 0.0;
-                memcpy(data + count, temp, 128);
-                count++;
-            }
-            else
-            {
-                temp[0] = A[j][i];
-                temp[1] = A[j + 1][i + 1];
-                memcpy(data + count, temp, 128);
-                count++;
-            }
-        }
-    }
-
-return count;
 }
 
 
