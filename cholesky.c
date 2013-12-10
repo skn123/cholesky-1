@@ -1,9 +1,9 @@
 #include "cholesky.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 #include <time.h>
 #include <omp.h>
-#include "nrutil.h"
 
 /*
 Wersja pierwsza ze slajdów
@@ -13,7 +13,6 @@ double** choldc(double **A, double **L, int dimension)
     int i,j,k;
     double sum;
     clock_t begin, end;
-    double time_spent;
 
     begin = clock();
     for (k = 1; k <= dimension; k++)
@@ -43,7 +42,6 @@ double** choldc2(double **A, double **L, int dimension)
 {
     int i,j,k;
     clock_t begin, end;
-    double time_spent;
 
     begin = clock();
     for (k = 1; k <= dimension - 1; k++)

@@ -1,7 +1,28 @@
 #include "spd_matrix.h"
-#include "nrutil.h"
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+double **dmatrix(long nrl, long nrh, long ncl, long nch)
+{
+	long i, nrow = nrh - nrl + 1, ncol = nch - ncl + 1;
+	double **m;
+
+	m = (double**) malloc((size_t)((nrow + 1) * sizeof(double*)));
+	m += 1;
+	m -= nrl;
+
+	m[nrl] = (double*) malloc((size_t)((nrow * ncol + 1) * sizeof(double)));
+	m[nrl] += 1;
+	m[nrl] -= ncl;
+
+	for(i = nrl + 1; i <= nrh; i++) m[i] = m[i - 1] + ncol;
+    int j;
+    for (i = 1; i <= nrh; i++)
+        for (j = 1; j <= nch; j++)
+            m[i][j] = 0.0;
+	return m;
+}
 
 double random_double(double fMin, double fMax)
 {

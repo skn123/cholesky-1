@@ -1,6 +1,7 @@
 #ifndef SPD_MATRIX
 #define SPD_MATRIX
 
+double **dmatrix();
 double random_double(double fMin, double fMax);
 void print_matrix(double** A, int dimension);
 double** generate_random_matrix(double** A, int dimension);

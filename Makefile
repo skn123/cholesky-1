@@ -41,7 +41,7 @@ DEP_RELEASE =
 OUT_RELEASE = build_release/cholesky
 
 INC_SSE = $(INC)
-CFLAGS_SSE = $(CFLAGS) -O3 -msse3 -ffast-math -ftree-vectorizer-verbose=10
+CFLAGS_SSE = $(CFLAGS) -O3 -msse3 -ffast-math -ftree-vectorizer-verbose=1
 RESINC_SSE = $(RESINC)
 RCFLAGS_SSE = $(RCFLAGS)
 LIBDIR_SSE = $(LIBDIR)
@@ -62,15 +62,15 @@ OBJDIR_OPENMP = build_release/openmp
 DEP_OPENMP = 
 OUT_OPENMP = build_release/cholesky_openmp
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/cholesky.o $(OBJDIR_DEBUG)/main.o $(OBJDIR_DEBUG)/nrutil.o $(OBJDIR_DEBUG)/spd_matrix.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/cholesky.o $(OBJDIR_DEBUG)/main.o $(OBJDIR_DEBUG)/spd_matrix.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/cholesky.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/nrutil.o $(OBJDIR_RELEASE)/spd_matrix.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/cholesky.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/spd_matrix.o
 
-OBJ_SSE = $(OBJDIR_SSE)/cholesky.o $(OBJDIR_SSE)/main.o $(OBJDIR_SSE)/nrutil.o $(OBJDIR_SSE)/spd_matrix.o
+OBJ_SSE = $(OBJDIR_SSE)/cholesky.o $(OBJDIR_SSE)/main.o $(OBJDIR_SSE)/spd_matrix.o
 
-OBJ_OPENMP = $(OBJDIR_OPENMP)/cholesky.o $(OBJDIR_OPENMP)/main.o $(OBJDIR_OPENMP)/nrutil.o $(OBJDIR_OPENMP)/spd_matrix.o
+OBJ_OPENMP = $(OBJDIR_OPENMP)/cholesky.o $(OBJDIR_OPENMP)/main.o $(OBJDIR_OPENMP)/spd_matrix.o
 
-all: debug release sse openmp
+all: debug release openmp sse
 
 clean: clean_debug clean_release clean_sse clean_openmp
 
@@ -90,9 +90,6 @@ $(OBJDIR_DEBUG)/cholesky.o: cholesky.c
 
 $(OBJDIR_DEBUG)/main.o: main.c
 	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c main.c -o $(OBJDIR_DEBUG)/main.o
-
-$(OBJDIR_DEBUG)/nrutil.o: nrutil.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c nrutil.c -o $(OBJDIR_DEBUG)/nrutil.o
 
 $(OBJDIR_DEBUG)/spd_matrix.o: spd_matrix.c
 	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c spd_matrix.c -o $(OBJDIR_DEBUG)/spd_matrix.o
@@ -119,9 +116,6 @@ $(OBJDIR_RELEASE)/cholesky.o: cholesky.c
 $(OBJDIR_RELEASE)/main.o: main.c
 	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c main.c -o $(OBJDIR_RELEASE)/main.o
 
-$(OBJDIR_RELEASE)/nrutil.o: nrutil.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c nrutil.c -o $(OBJDIR_RELEASE)/nrutil.o
-
 $(OBJDIR_RELEASE)/spd_matrix.o: spd_matrix.c
 	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c spd_matrix.c -o $(OBJDIR_RELEASE)/spd_matrix.o
 
@@ -147,9 +141,6 @@ $(OBJDIR_SSE)/cholesky.o: cholesky.c
 $(OBJDIR_SSE)/main.o: main.c
 	$(CC) $(CFLAGS_SSE) $(INC_SSE) -c main.c -o $(OBJDIR_SSE)/main.o
 
-$(OBJDIR_SSE)/nrutil.o: nrutil.c
-	$(CC) $(CFLAGS_SSE) $(INC_SSE) -c nrutil.c -o $(OBJDIR_SSE)/nrutil.o
-
 $(OBJDIR_SSE)/spd_matrix.o: spd_matrix.c
 	$(CC) $(CFLAGS_SSE) $(INC_SSE) -c spd_matrix.c -o $(OBJDIR_SSE)/spd_matrix.o
 
@@ -174,9 +165,6 @@ $(OBJDIR_OPENMP)/cholesky.o: cholesky.c
 
 $(OBJDIR_OPENMP)/main.o: main.c
 	$(CC) $(CFLAGS_OPENMP) $(INC_OPENMP) -c main.c -o $(OBJDIR_OPENMP)/main.o
-
-$(OBJDIR_OPENMP)/nrutil.o: nrutil.c
-	$(CC) $(CFLAGS_OPENMP) $(INC_OPENMP) -c nrutil.c -o $(OBJDIR_OPENMP)/nrutil.o
 
 $(OBJDIR_OPENMP)/spd_matrix.o: spd_matrix.c
 	$(CC) $(CFLAGS_OPENMP) $(INC_OPENMP) -c spd_matrix.c -o $(OBJDIR_OPENMP)/spd_matrix.o

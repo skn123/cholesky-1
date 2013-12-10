@@ -67,10 +67,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="nrutil.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="nrutil.h" />
 		<Unit filename="spd_matrix.c">
 			<Option compilerVar="CC" />
 		</Unit>

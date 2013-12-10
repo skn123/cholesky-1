@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <time.h>
 #include <malloc.h>
-#include "nrutil.h"
 #include "spd_matrix.h"
 #include "cholesky.h"
 
@@ -10,7 +10,6 @@
 int main(int argc, char* argv[])
 {
     srand( time( NULL ) );
-	int i,j;
 	if (!argv[1])
 	{
 	    printf("Specify matrix dimension.\n");
