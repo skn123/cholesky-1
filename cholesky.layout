@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
-	<File name="cholesky.c" open="1" top="0" tabpos="4">
-		<Cursor position="97" topLine="0" />
+	<ActiveTarget name="OpenMP" />
+	<File name="cholesky.c" open="1" top="1" tabpos="4">
+		<Cursor position="1221" topLine="32" />
 	</File>
 	<File name="cholesky.h" open="1" top="0" tabpos="5">
 		<Cursor position="167" topLine="0" />
 	</File>
 	<File name="main.c" open="1" top="0" tabpos="1">
-		<Cursor position="205" topLine="0" />
+		<Cursor position="1576" topLine="0" />
 	</File>
-	<File name="spd_matrix.c" open="1" top="1" tabpos="2">
+	<File name="spd_matrix.c" open="1" top="0" tabpos="2">
 		<Cursor position="80" topLine="0" />
 	</File>
 	<File name="spd_matrix.h" open="1" top="0" tabpos="3">

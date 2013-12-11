@@ -48,26 +48,9 @@ int main(int argc, char* argv[])
     A_clone = multiply(L, L_t, A_clone, dimension);
     norm3 = frobenius_norm(A_clone, dimension);
 
-
-    printf("Norm1: % 20.16lf\n", norm1);
-    printf("Norm2: % 20.16lf\n", norm2);
-    printf("Norm3: % 20.16lf\n", norm3);
     printf("Error method 1: % 20.16lf\n", fabs(norm1 - norm2));
     printf("Error method 2: % 20.16lf\n", fabs(norm1 - norm3));
 
-
-//    //alokujemy pamiec z wyrownaniem
-//    __m128d *data, *L;
-//    data = _mm_malloc(dimension * dimension * sizeof(double), 16);
-//    L = _mm_malloc(dimension * dimension * sizeof(double), 16);
-//    //ladujemy tam macierz w zwektoryzowanej postaci
-//    int count = convert_to_sse(data, A, dimension);
-//
-////    double *temp = (double*) data;
-////    for (i = 0; i < count * 2; i++)
-////        printf("% 20.16lf\n", temp[i]);
-//
-//    choldc_sse(data, L, A, dimension);
 
 return 0;
 }

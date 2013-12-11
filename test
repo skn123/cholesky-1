@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "Cholesky Factorization"
+./build_release/cholesky $1
+echo "\nCholesky Factorization OpenMP"
+./build_release/cholesky_openmp $1
+echo "\nCholesky Factorization SSE"
+./build_release/cholesky_sse $1

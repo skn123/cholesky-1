@@ -22,7 +22,7 @@
 				<Option object_output="build_release/standard" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="2000" />
+				<Option parameters="1000" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -35,7 +35,7 @@
 				<Option object_output="build_release/sse" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="2000" />
+				<Option parameters="1000" />
 				<Compiler>
 					<Add option="-O3" />
 					<Add option="-msse3" />
@@ -48,7 +48,7 @@
 				<Option object_output="build_release/openmp" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="2000" />
+				<Option parameters="1000" />
 				<Compiler>
 					<Add option="-fopenmp" />
 				</Compiler>

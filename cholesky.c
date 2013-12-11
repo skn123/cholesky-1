@@ -51,6 +51,7 @@ double** choldc2(double **A, double **L, int dimension)
         for (i = k + 1; i <= dimension; i++) L[i][k] = A[i][k] / L[k][k];
         for (j = k + 1; j <= dimension; j++)
         {
+            #pragma omp parallel for
             for (i = j; i <= dimension; i++) A[i][j] = A[i][j] - L[i][k] * L[j][k];
         }
     }
