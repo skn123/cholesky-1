@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="build_debug/cholesky" prefix_auto="1" extension_auto="1" />
-				<Option object_output="build_debug/" />
+				<Option output="build_debug\cholesky" prefix_auto="1" extension_auto="1" />
+				<Option object_output="build_debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="1000" />
@@ -18,8 +18,8 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="build_release/cholesky" prefix_auto="1" extension_auto="1" />
-				<Option object_output="build_release/standard" />
+				<Option output="build_release\cholesky" prefix_auto="1" extension_auto="1" />
+				<Option object_output="build_release\standard" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="1000" />
@@ -31,8 +31,8 @@
 				</Linker>
 			</Target>
 			<Target title="SSE">
-				<Option output="build_release/cholesky_sse" prefix_auto="1" extension_auto="1" />
-				<Option object_output="build_release/sse" />
+				<Option output="build_release\cholesky_sse" prefix_auto="1" extension_auto="1" />
+				<Option object_output="build_release\sse" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="1000" />
@@ -44,21 +44,19 @@
 				</Compiler>
 			</Target>
 			<Target title="OpenMP">
-				<Option output="build_release/cholesky_openmp" prefix_auto="1" extension_auto="1" />
-				<Option object_output="build_release/openmp" />
+				<Option output="build_release\cholesky_openmp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="build_release\openmp" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="1000" />
-				<Compiler>
-					<Add option="-fopenmp" />
-				</Compiler>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-fopenmp" />
 		</Compiler>
 		<Linker>
-			<Add library="../../usr/lib/gcc/i486-linux-gnu/4.7.2/libgomp.so" />
+			<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\gcc\mingw32\4.4.1\libgomp.dll.a" />
 		</Linker>
 		<Unit filename="cholesky.c">
 			<Option compilerVar="CC" />

@@ -18,14 +18,13 @@ double** choldc(double **A, double **L, int dimension)
     for (k = 1; k <= dimension; k++)
     {
         sum = A[k][k];
-        #pragma omp parallel for
-        for (j = 1; j <= k - 1; j++) sum -= L[k][j] * L[k][j];
+        for (j = 1; j <= k - 1; j++) sum = sum - (L[k][j] * L[k][j]);
         L[k][k] = sqrt(sum);
-        #pragma omp parallel for
+        #pragma omp parallel for private(i, j, sum) shared(A, L, dimension)
         for (i = k + 1; i <= dimension; i++)
         {
             sum = A[i][k];
-            for (j = 1; j <= k - 1; j++) sum -= L[i][j] * L[k][j];
+            for (j = 1; j <= k - 1; j++) sum = sum - L[i][j] * L[k][j];
             L[i][k] = sum / L[k][k];
         }
     }
@@ -47,11 +46,11 @@ double** choldc2(double **A, double **L, int dimension)
     for (k = 1; k <= dimension - 1; k++)
     {
         L[k][k] = sqrt(A[k][k]);
-        #pragma omp parallel for
+        #pragma omp parallel for private(i) shared(L, A, dimension)
         for (i = k + 1; i <= dimension; i++) L[i][k] = A[i][k] / L[k][k];
+        #pragma omp parallel for private(j, i) shared(L, A, dimension)
         for (j = k + 1; j <= dimension; j++)
         {
-            #pragma omp parallel for
             for (i = j; i <= dimension; i++) A[i][j] = A[i][j] - L[i][k] * L[j][k];
         }
     }
