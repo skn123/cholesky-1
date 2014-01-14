@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
 	<File name="cholesky.c" open="1" top="1" tabpos="4">
-		<Cursor position="547" topLine="6" />
+		<Cursor position="1103" topLine="15" />
 	</File>
 	<File name="cholesky.h" open="1" top="0" tabpos="5">
 		<Cursor position="167" topLine="0" />

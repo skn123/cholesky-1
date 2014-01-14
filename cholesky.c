@@ -14,6 +14,9 @@ double** choldc(double **A, double **L, int dimension)
     double sum;
     clock_t begin, end;
 
+omp_set_dynamic(0);
+omp_set_num_threads(4);
+
     begin = clock();
     for (k = 1; k <= dimension; k++)
     {
@@ -41,6 +44,9 @@ double** choldc2(double **A, double **L, int dimension)
 {
     int i,j,k;
     clock_t begin, end;
+
+omp_set_dynamic(0);
+omp_set_num_threads(16);
 
     begin = clock();
     for (k = 1; k <= dimension - 1; k++)
