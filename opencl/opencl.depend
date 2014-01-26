@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1390691657 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\cholesky.c
+	"cholesky.h"
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<time.h>
+
+1390691746 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\cholesky.h
+
+1390700900 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\main.c
+	<stdlib.h>
+	<math.h>
+	<stdio.h>
+	<time.h>
+	<malloc.h>
+	"spd_matrix.h"
+	"cholesky.h"
+	<CL/cl.h>
+
+1390691028 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\spd_matrix.h
+
+1390691028 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\spd_matrix.c
+	"spd_matrix.h"
+	<math.h>
+	<stdlib.h>
+	<stdio.h>
+
