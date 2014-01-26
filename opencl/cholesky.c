@@ -27,7 +27,7 @@ float** choldc(float **A, float **L, int dimension)
         }
     }
     end = clock();
-    printf("Time method 1 CPU: %f\n", (float)(end - begin) / CLOCKS_PER_SEC);
+    printf("Time \tCPU: % 20.16lf\n", (float)(end - begin) / CLOCKS_PER_SEC);
 
 return L;
 }
@@ -52,7 +52,7 @@ float** choldc2(float **A, float **L, int dimension)
     }
     L[dimension][dimension] = sqrt(A[dimension][dimension]);
     end = clock();
-    printf("Time method 2: %f\n", (float)(end - begin) / CLOCKS_PER_SEC);
+    printf("Time \tCPU: % 20.16lf\n", (float)(end - begin) / CLOCKS_PER_SEC);
 
 return L;
 }

@@ -22,6 +22,7 @@ typedef struct DeviceDesc{
 
 int main(int argc, char *argv[])
 {
+int method = 0;
     srand( time( NULL ) );
 	if (!argv[1])
 	{
@@ -29,6 +30,15 @@ int main(int argc, char *argv[])
 	    exit(-1);
 	}
 	int dimension = atoi(argv[1]);
+	if (atoi(argv[2]) == 1)
+        method = 1;
+    else if (atoi(argv[2]) == 2)
+        method = 2;
+    else
+    {
+        printf("Specify decomposition method.\n");
+        exit(-1);
+    }
 
     /***** DEKLARACJE i PRZYGOTOWANIE SRODOWISKA OpenCL *****/
     //miejsce na to co zwracaja funkcje opencl
@@ -140,11 +150,13 @@ int main(int argc, char *argv[])
         exit(6);
     }
 
-
+    cl_kernel choldc_gpu;
     //wyciaga funkcje kernela ze skompilowanego kodu
-    cl_kernel choldc_gpu = clCreateKernel(program, "choldc_gpu", &result);
+    if (method == 1)
+        choldc_gpu = clCreateKernel(program, "choldc_gpu", &result);
+    else if (method == 2)
+        choldc_gpu = clCreateKernel(program, "choldc2_gpu", &result);
     if(result != CL_SUCCESS) exit(7);
-
 
     /***** TWORZYMY MACIERZ *****/
     printf("Dimension: %d\n", dimension);
@@ -161,14 +173,24 @@ int main(int argc, char *argv[])
     norm1 = frobenius_norm(A, dimension);
 
     //Faktoryzacja Choleskyego metoda 1. na CPU
-    L = choldc(A, L, dimension);
+    A_clone = clone_matrix(A, dimension);
+    if (method == 1)
+    {
+        printf("Method:\tcholdc\n");
+        L = choldc(A_clone, L, dimension);
+    }
+    else if (method == 2)
+    {
+        printf("Method:\tcholdc2\n");
+        L = choldc2(A_clone, L, dimension);
+    }
     L_t = clone_matrix(L, dimension);
     L_t = transpose_matrix(L_t, dimension);
 
     //Oblicza norme nowej macierzy
     A_clone = multiply(L, L_t, A_clone, dimension);
     norm2 = frobenius_norm(A_clone, dimension);
-    printf("Error method 1 CPU: % 20.16lf\n", fabs(norm1 - norm2));
+    printf("Error \tCPU: % 20.16lf\n", fabs(norm1 - norm2));
 
 
     /***** REZERWOWANIE PAMIECI NA GPU i TWORZENIE BUFOROW DO KOPIOWANIA DANYCH *****/
@@ -204,6 +226,7 @@ int main(int argc, char *argv[])
     result |= clSetKernelArg(choldc_gpu, 1, sizeof(cl_mem), &outputBuffer);
     result |= clSetKernelArg(choldc_gpu, 2, sizeof(size_t), &dimension);
     if(result != CL_SUCCESS) exit(11);
+    result = 0;
 
     cl_uint   workDim = 1;
     size_t*   globalWorkOffset = NULL;
@@ -226,14 +249,12 @@ int main(int argc, char *argv[])
     clGetEventProfilingInfo(kernelExecEvent, CL_PROFILING_COMMAND_START, sizeof(cl_ulong), &start, NULL);
     clGetEventProfilingInfo(kernelExecEvent, CL_PROFILING_COMMAND_END, sizeof(cl_ulong), &end, NULL);
     cl_double g_NDRangePureExecTimeMs = (cl_double)(end - start)*(cl_double)(1e-09);
-    printf("Time method 1 GPU: % 20.16lf\n", g_NDRangePureExecTimeMs);
+    printf("Time \tGPU: % 20.16lf\n", g_NDRangePureExecTimeMs);
     if(result != CL_SUCCESS)
     {
         printf("%d\n", (unsigned int) result);
         exit(13);
     }
-//    //czeka az sie wszystko wykona
-//    clFinish(commands);
 
     /***** KOPIUJEMY OBLICZANA MACIERZ Z KARTY I SPRAWDZAMY WYNIK *****/
     cl_bool     blockingRead = CL_TRUE;
@@ -254,7 +275,10 @@ int main(int argc, char *argv[])
     L_t = transpose_matrix(L_t, dimension);
     A_clone = multiply(L, L_t, A_clone, dimension);
     norm3 = frobenius_norm(A_clone, dimension);
-    printf("Error method 1 GPU: % 20.16lf\n", fabs(norm1 - norm3));
+    printf("Error \tGPU: % 20.16lf\n", fabs(norm1 - norm3));
+
+
+
 //    print_matrix(L, dimension);
     print_matrix_to_file(L, dimension);
 //    print_matrix_to_file(L_t, dimension);

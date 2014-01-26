@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1390738198 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\cholesky.c
+1390746752 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\cholesky.c
 	"cholesky.h"
 	<stdlib.h>
 	<stdio.h>
@@ -8,7 +8,7 @@
 
 1390691746 e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\cholesky.h
 
-1390738291 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\main.c
+1390753708 source:e:\google drive\documents\programowanie rownolegle i rozproszone\cholesky\opencl\main.c
 	<stdlib.h>
 	<math.h>
 	<stdio.h>

@@ -21,7 +21,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="opencl" />
-				<Option parameters="100" />
+				<Option parameters="2000 2" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
