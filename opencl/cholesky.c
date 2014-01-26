@@ -27,7 +27,7 @@ float** choldc(float **A, float **L, int dimension)
         }
     }
     end = clock();
-    printf("Time method 1: %f\n", (float)(end - begin) / CLOCKS_PER_SEC);
+    printf("Time method 1 CPU: %f\n", (float)(end - begin) / CLOCKS_PER_SEC);
 
 return L;
 }
